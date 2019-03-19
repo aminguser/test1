@@ -21,12 +21,25 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
  @Autowired
  private UserDao dao;
-    @Autowired
-    private JedisUtil jedisUtil;
+/*    @Autowired
+    private JedisUtil jedisUtil;*/
+
+    @Override
+    public List<Map> getUserPage(Map map) {
+      //  map.put("start",(Integer.valueOf(map.get("pageNo")+"")-1)*Integer.valueOf(map.get("pageSize")+""));
+          map.put("start",(Integer.valueOf(map.get("pageNo")+"")-1)*Integer.valueOf(map.get("pageSize")+""));
+        return dao.getUserPage(map);
+    }
+
+    @Override
+    public int getUserPageCount(Map map) {
+        return dao.getUserPageCount(map);
+    }
 
     public List<Map> getUserList() {
+        return  dao.getUserList();
         //从redis  取 对象
-        Object userList = jedisUtil.getObject("userList");
+      /*  Object userList = jedisUtil.getObject("userList");
         if(userList!=null){//如果存在，直接返回
             System.out.println("从redis缓存中取！！！！！");
             return (List<Map>)userList;
@@ -35,6 +48,6 @@ public class UserServiceImpl implements UserService {
             List<Map> userList1 = dao.getUserList();
             jedisUtil.putObject("userList",userList1);
             return userList1;
-        }
+        }*/
     }
 }

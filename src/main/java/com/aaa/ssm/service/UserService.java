@@ -13,4 +13,15 @@ import java.util.Map;
  */
 public interface UserService {
     List<Map> getUserList();
+    /**
+     * 获取分页所需的数据
+     */
+    List<Map> getUserPage(Map map);
+
+    /**
+     * 获取总数据
+     * @param map
+     * @return
+     */
+    int  getUserPageCount(Map map);
 }

@@ -10,5 +10,21 @@ import java.util.Map;
  *createTime:2019/3/3 0003 10:55
  */
 public interface UserDao {
+
+    /**
+     *获取人员列表
+     * @return
+     */
     List<Map> getUserList();
+    /**
+     * 获取分页所需的数据
+     */
+    List<Map> getUserPage(Map map);
+
+    /**
+     * 获取总数据
+     * @param map
+     * @return
+     */
+    int  getUserPageCount(Map map);
 }
